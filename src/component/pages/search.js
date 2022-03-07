@@ -2,32 +2,54 @@ import React, {useState, useEffect} from 'react';
 import Axios from "axios";
 
 import {FotosSearch} from '../gestorFoto/fotosSearch';
+import {client_id} from '../../env';
 
 import Box from '@mui/material/Box';
 
 export const Search = () =>{
 
     const [fotos,setFotos] = useState([]);
-    const [ciudad, setCiudad] = useState("madrid");
+    const [busqueda, setBusqueda] = useState("madrid");
+    const [page, setPage] = useState(1)
     
-    const fotoListFuncional = (`https://api.unsplash.com/photos?query=londres&client_id=94Qm7uawu-WipDfsnw4LgIey51lYC0BjuLtDF7nL3is`);
-    const fotoList = (`https://api.unsplash.com/search/photos?query=${ciudad}&client_id=94Qm7uawu-WipDfsnw4LgIey51lYC0BjuLtDF7nL3is`);
+    const fotoList = (`https://api.unsplash.com/search/photos?query=${busqueda}&client_id=${client_id}`);
+    const fotopage = (`https://api.unsplash.com/search/photos?query=${busqueda}&page=${page}&client_id=${client_id}`)
     useEffect(() =>{
-        Axios.get(fotoListFuncional)
+        Axios.get(fotopage)
         .then((response) => {
             //console.log(response.data.urls);
-            setFotos(response.data)
+            setFotos(response.data.results)            
             console.log('-------------------------')
             
         })
         .catch((error) => {
-            console.log('a ocurrido un error ', error);
+            console.log('Ha ocurrido un error ', error);
         })
-    },[ciudad])
+    },[busqueda, page])
 
   
+    const buscador = (e) => {
+        //console.log(e.target.value);
+        setBusqueda(e.target.value);
+        //console.log('Estamos al aire');
+    }
+  
+    const sumarPage = () => {
+        setPage(page + 1);        
+    }
+
+    const restarPage = () => {
+        setPage(page - 1);
+    }
+
     return(
         <Box sx={{ overflow: 'hidden' }}>
+            <p>Buscador</p> <input onChange={buscador}/>
+          
+            {console.log(page)}
+
+            <button onClick={sumarPage}>+</button>
+            <button onClick={restarPage}>-</button>
             <FotosSearch fotos={fotos}/>           
         </Box>
     )
