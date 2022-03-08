@@ -7,10 +7,10 @@ export const fotoSlice = createSlice({
   },
   reducers: {
     addFoto: (state) => {
-      state.listFoto.push(JSON.stringify({name:'Carlos', apellido: 'Terrero'}))
+      state.listFoto.push({name:'Carlos', apellido: 'Terrero'})
     },
     prueba: (state, action) => {
-      state.listFoto.push(JSON.stringify(action.payload))
+      state.listFoto.push(action.payload)
     },
     deleteFoto: (state) => {
       state.listFoto -= 3

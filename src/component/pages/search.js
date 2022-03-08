@@ -64,15 +64,15 @@ export const Search = () =>{
         <Box sx={{ overflow: 'hidden' }}>
             <p>Buscador</p> <input onChange={buscador}/>          
 
-            {/* <button onClick={sumarPage}>+</button>
-            <button onClick={restarPage}>-</button> */}
+            <button onClick={sumarPage}>+</button>
+            <button onClick={restarPage}>-</button>
 
-            <button onClick={() => dispatch(increment())}>+</button>
+            {/* <button onClick={() => dispatch(increment())}>+</button>
             <button onClick={() => dispatch(decrement())}>-</button>
             <p>Contador de pruebas {countValue}</p>
 
             <button onClick={() => dispatch(addFoto())}>+</button>
-            <button onClick={() => dispatch(deleteFoto())}>-</button>
+            <button onClick={() => dispatch(deleteFoto())}>-</button> */}
             
             {/* <p>comprobador de img {fotosFav}</p> */}
             {/* {console.log(store.getState())} */}
