@@ -6,14 +6,15 @@ export const fotoSlice = createSlice({
     listFoto: [],
   },
   reducers: {
-    addFoto: (state) => {
+    /* addFoto: (state) => {
       state.listFoto.push({name:'Carlos', apellido: 'Terrero'})
-    },
-    prueba: (state, action) => {
+    }, */
+    addFoto: (state, action) => {
       state.listFoto.push(action.payload)
     },
-    deleteFoto: (state) => {
-      state.listFoto -= 3
+    deleteFoto: (state, action) => {
+        state.listFoto = state.listFoto.filter(foto => foto.id !== action.payload.id ) 
+      //console.log(action.payload)
     },
     incrementByAmount: (state, action) => {
       state.value += action.payload

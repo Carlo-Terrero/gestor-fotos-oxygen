@@ -1,8 +1,8 @@
-import React from 'react';
-import { selecFoto } from '../../fotosSlice/fotoSlice';
-import { useSelector } from 'react-redux';
+import React, {useEffect} from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { selecFoto, deleteFoto } from '../../fotosSlice/fotoSlice';
 
-
+// Styles
 import PropTypes from 'prop-types';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -12,8 +12,14 @@ import Button from '@mui/material/Button';
 
 export const FotosFavo = () => {
 
+    const dispatch = useDispatch();
     const listaFotos = useSelector(selecFoto);
     console.log(listaFotos)
+
+    const handleClick = (foto) => {
+        console.log('me estas borrando', foto.id)
+    }
+
     return(
         <Grid container wrap="nowrap">
         {listaFotos.map((foto,i) =>                       
@@ -34,7 +40,8 @@ export const FotosFavo = () => {
                     </Typography>
                     
                 </Box>
-            
+
+                <Button onClick={() => dispatch(deleteFoto(foto))}>Delete</Button>
                
             </Box> 
         )}

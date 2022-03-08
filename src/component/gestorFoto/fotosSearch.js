@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import {prueba} from '../../fotosSlice/fotoSlice';
+import {addFoto} from '../../fotosSlice/fotoSlice';
 import React from 'react';
 
 import PropTypes from 'prop-types';
@@ -39,7 +39,7 @@ export const FotosSearch = (props) => {
                         
                     </Box>
                 
-                    <Button onClick={() => dispatch(prueba(foto))}>
+                    <Button onClick={() => dispatch(addFoto(foto))}>
                         Add to my photos
                     </Button>
                 </Box> 
