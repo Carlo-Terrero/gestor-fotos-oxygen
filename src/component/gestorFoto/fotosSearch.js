@@ -1,3 +1,5 @@
+import { useDispatch } from 'react-redux';
+import {prueba} from '../../fotosSlice/fotoSlice';
 import React from 'react';
 
 import PropTypes from 'prop-types';
@@ -8,10 +10,12 @@ import Skeleton from '@mui/material/Skeleton';
 import Button from '@mui/material/Button';
 
 export const FotosSearch = (props) => {
+
+    const dispatch = useDispatch();
     
     const handleClick = (foto) => {
         alert(`Imagen añadida a su cartera` );
-        
+        console.log(foto)
     }
 
     return(
@@ -35,7 +39,7 @@ export const FotosSearch = (props) => {
                         
                     </Box>
                 
-                    <Button onClick={() => handleClick(foto)}>
+                    <Button onClick={() => dispatch(prueba(foto))}>
                         Add to my photos
                     </Button>
                 </Box> 
