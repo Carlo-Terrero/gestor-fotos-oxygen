@@ -12,11 +12,6 @@ import Button from '@mui/material/Button';
 export const FotosSearch = (props) => {
 
     const dispatch = useDispatch();
-    
-    const handleClick = (foto) => {
-        alert(`Imagen añadida a su cartera` );
-        console.log(foto)
-    }
 
     return(
         <Grid container wrap="nowrap">
@@ -38,7 +33,7 @@ export const FotosSearch = (props) => {
                         </Typography>
                         
                     </Box>
-                
+
                     <Button onClick={() => dispatch(addFoto(foto))}>
                         Add to my photos
                     </Button>

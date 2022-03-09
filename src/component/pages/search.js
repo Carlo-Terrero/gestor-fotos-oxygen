@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import Axios from "axios";
 import { useSelector, useDispatch } from 'react-redux';
-import {
+/* import {
     decrement,
     increment,    
     selectCount,
-  } from '../../fotosSlice/countSlice'; 
+  } from '../../fotosSlice/countSlice';  */
 
 import { 
     addFoto, 
@@ -18,7 +18,7 @@ import {client_id} from '../../env';
 
 import Box from '@mui/material/Box';
 
-import store from '../../store/store';
+//import store from '../../store/store';
 
 export const Search = () =>{
 
@@ -26,7 +26,7 @@ export const Search = () =>{
     const [busqueda, setBusqueda] = useState("madrid");
     const [page, setPage] = useState(1)
 
-    const countValue = useSelector(selectCount);
+    //const countValue = useSelector(selectCount);
     const fotosFav = useSelector(selecFoto)
     const dispatch = useDispatch();
 
