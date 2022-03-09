@@ -37,7 +37,11 @@ export const FotosFavo = () => {
    
 
     const [open, setOpen] = useState(false);
-    const handleOpen = () => setOpen(true);
+
+    const handleOpen = (foto) => {
+        setEditFoto(foto);
+        setOpen(true)
+    };
     
     const handleClose = () => {
         setNewDescription('')
@@ -54,8 +58,8 @@ export const FotosFavo = () => {
         console.log(text)
     }
 
-    const cambiarDescripcion = (foto) => {        
-        dispatch(editDescription({id: foto, description: newDescription }))
+    const cambiarDescripcion = () => { 
+        dispatch(editDescription({id: editFoto, description: newDescription }))
         handleClose();
     }
 
@@ -98,7 +102,7 @@ export const FotosFavo = () => {
                      
                         <Button onClick={() => dispatch(deleteFoto(foto))}>Delete</Button>
                         <Button onClick={() => descargarImg(foto)}>descar</Button>
-                        <Button onClick={handleOpen}>Edit</Button> 
+                        <Button onClick={() => handleOpen(foto.id)}>Edit</Button> 
 
                         <React.Fragment>                            
                             <Modal
@@ -115,7 +119,7 @@ export const FotosFavo = () => {
                                 <textarea onChange={handleOnChange}> </textarea>
                                 {/* <textarea onChange={change}></textarea> */}
                                 
-                                <Button onClick={() => cambiarDescripcion(foto.id)}>Aceptar</Button>
+                                <Button onClick={() => cambiarDescripcion()}>Aceptar</Button>
                                 <Button onClick={handleClose}>Cancelar</Button>
                                 </Box>
                             </Modal>

@@ -16,7 +16,7 @@ export const fotoSlice = createSlice({
     },
     editDescription: (state, action) => {
       /* state.value += action.payload */
-      console.log(action)
+      //console.log(action)
       state.listFoto.find(foto => foto.id === action.payload.id).description = action.payload.description
 
     },
