@@ -41,12 +41,14 @@ export const FotosFavo = () => {
 
     const [newDescription, setNewDescription] = useState('');
     const [editFoto, setEditFoto] = useState('');
+    const [busqueda, setBusqueda] = useState('');
    
 
     const [open, setOpen] = useState(false);
 
     const handleOpen = (foto) => {
-        setEditFoto(foto);
+        setNewDescription(foto.description)
+        setEditFoto(foto.id);
         setOpen(true)
     };
     
@@ -61,8 +63,7 @@ export const FotosFavo = () => {
     }
 
     const buscadorDescription = (e) => {
-        let text = e.target.value;
-        console.log(text)
+        setBusqueda(e.target.value);
     }
 
     const cambiarDescripcion = () => { 
@@ -71,10 +72,12 @@ export const FotosFavo = () => {
     }
 
     const handleOnChange = (e) => {
-        const valor = e.target.value
-        setNewDescription(valor);
+        setNewDescription( e.target.value);
         console.log(newDescription)
     }
+
+    //Aqui el buscador
+    const filteredPhotos = busqueda.length ? listaFotos.filter(f => f.description.toLowerCase().includes(busqueda.toLowerCase())) : listaFotos;
 
     return(
         <Box sx={{ overflow: 'hidden' }}>
@@ -89,7 +92,7 @@ export const FotosFavo = () => {
             marginBottom: 5,
             }}>    
 
-                {listaFotos.map((foto,i) =>                       
+                {filteredPhotos.map((foto,i) =>                       
                     <Box key={i} sx={{ width: 390, marginRight: 0.5, marginTop: 4 }}>                             
                         <img
                             style={{ width: 350, height: 280 }}
@@ -110,11 +113,18 @@ export const FotosFavo = () => {
                             
                         </Box>
                      
-                        <Button onClick={() => handleOpen(foto.id)}><EditIcon/></Button>                         
+                        <Button onClick={() => handleOpen(foto)}><EditIcon/></Button>                         
                         <Button onClick={() => descargarImg(foto)}><ArrowCircleDownIcon/></Button>
                         <Button onClick={() => dispatch(deleteFoto(foto))}><DeleteIcon/></Button>
 
-                        <React.Fragment>                            
+                        
+                   
+                    </Box> 
+                     
+                )}
+
+            </Grid>
+            <React.Fragment>                            
                             <Modal
                                 open={open}
                                 onClose={handleClose}
@@ -134,6 +144,7 @@ export const FotosFavo = () => {
                                     variant="standard"
                                     onChange={handleOnChange}
                                     multiline
+                                    value={newDescription}
                                     fullWidth 
                                     sx={{marginTop:2, }}/>
                                 
@@ -144,13 +155,6 @@ export const FotosFavo = () => {
                                 </Box>
                             </Modal>
                         </React.Fragment>
-                   
-                    </Box> 
-                     
-                )}
-
-            </Grid>
-
             
         </Box>
     )
