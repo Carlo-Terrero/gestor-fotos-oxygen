@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import { useSelector } from 'react-redux';
 import { selectCount } from '../../fotosSlice/countSlice';
 import { FotosFavo } from '../gestorFoto/fotosFavo';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 
 export const MyFotos = () => {
     
@@ -9,9 +11,17 @@ export const MyFotos = () => {
     
 
     return(
-        <div>
-            <p>Estamos en mis fotos </p>            
+        <Box sx={{marginTop:12,marginLeft: 5}}>
+            <Typography 
+                sx={{
+                    my: 3,
+                    marginLeft:3
+                
+            }}
+            >Coleccion de fotos personal 
+            </Typography>            
+            
             <FotosFavo/>
-        </div>
+        </Box>
     )
 }

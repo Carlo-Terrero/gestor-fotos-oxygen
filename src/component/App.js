@@ -8,7 +8,7 @@ import { MyFotos } from './pages/myFotos';
 function App() {
   return (
     <div className="App">
-       <Router>
+      <Router>
          <div>
           
           <Navegador />

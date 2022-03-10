@@ -1,43 +1,31 @@
 import React, {useState, useEffect} from 'react';
 import Axios from "axios";
-import { useSelector, useDispatch } from 'react-redux';
-/* import {
-    decrement,
-    increment,    
-    selectCount,
-  } from '../../fotosSlice/countSlice';  */
+import { useSelector } from 'react-redux';
 
-import { 
-    addFoto, 
-    deleteFoto,
-    selecFoto
-  } from '../../fotosSlice/fotoSlice'
+import {selecFoto} from '../../fotosSlice/fotoSlice'
 
 import {FotosSearch} from '../gestorFoto/fotosSearch';
 import {client_id} from '../../env';
 
 import Box from '@mui/material/Box';
-
-//import store from '../../store/store';
+import Input from '@mui/material/Input';
+import Pagination from '@mui/material/Pagination';
 
 export const Search = () =>{
 
     const [fotos,setFotos] = useState([]);
     const [busqueda, setBusqueda] = useState("madrid");
-    const [page, setPage] = useState(1)
+    const [page, setPage] = useState(1);
+    const [totalPages, setTotalPages] = useState('')
 
-    //const countValue = useSelector(selectCount);
     const fotosFav = useSelector(selecFoto)
-    const dispatch = useDispatch();
-
-    //const fotosParseadas = JSON.parse(fotosFav)
     
-    //const fotoList = (`https://api.unsplash.com/search/photos?query=${busqueda}&client_id=${client_id}`);
     const fotopage = (`https://api.unsplash.com/search/photos?query=${busqueda}&page=${page}&client_id=${client_id}`)
     useEffect(() =>{
         Axios.get(fotopage)
         .then((response) => {
-            setFotos(response.data.results)            
+            setFotos(response.data.results)                     
+            setTotalPages(response.data.total_pages)            
             console.log('-------------------------')
             
         })
@@ -51,31 +39,24 @@ export const Search = () =>{
         setBusqueda(e.target.value);
     }
   
-    // Funciones que se encargan de cambiar las paginas
-    const sumarPage = () => {
-        setPage(page + 1);        
-    }
-
-    const restarPage = () => {
-        setPage(page - 1);
+    // Funciones que se encargan de cambiar las paginas. Mui se encarga de la lógica
+    const handleChangePage = (event, value) => {
+        setPage(value)
     }
 
     return(
         <Box sx={{ overflow: 'hidden' }}>
-            <p>Buscador</p> <input onChange={buscador}/>          
 
-            <button onClick={sumarPage}>+</button>
-            <button onClick={restarPage}>-</button>
-
-            {/* <button onClick={() => dispatch(increment())}>+</button>
-            <button onClick={() => dispatch(decrement())}>-</button>
-            <p>Contador de pruebas {countValue}</p>
-
-            <button onClick={() => dispatch(addFoto())}>+</button>
-            <button onClick={() => dispatch(deleteFoto())}>-</button> */}
-            
-            {/* <p>comprobador de img {fotosFav}</p> */}
-            {/* {console.log(store.getState())} */}
+           {/*  <Typography>Buscador</Typography>  */}
+           <Box sx={{marginLeft: 5,}}>
+                <Input onChange={buscador} placeholder='Buscador' 
+                    sx={{marginTop:12,  }}
+                
+                />
+                
+                <Pagination count={totalPages} page={page} onChange={handleChangePage} 
+                sx={{marginTop: 4}}/>
+            </Box>
             {console.log(fotosFav)}
             <FotosSearch fotos={fotos}/>           
         </Box>

@@ -12,6 +12,13 @@ import Typography from '@mui/material/Typography';
 import Skeleton from '@mui/material/Skeleton';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
+import DeleteIcon from '@mui/icons-material/Delete';
+import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
+import EditIcon from '@mui/icons-material/Edit';
+import Input from '@mui/material/Input';
+import TextField from '@mui/material/TextField';
+import CheckIcon from '@mui/icons-material/Check';
+import CancelIcon from '@mui/icons-material/Cancel';
 
 
 //import Modal from '../utilidades/modal';
@@ -68,41 +75,44 @@ export const FotosFavo = () => {
         setNewDescription(valor);
         console.log(newDescription)
     }
-  /*   const defaultDecription = (description) => {
-        return (description ? description : 'Descripcion en proceso')
-    } */
-
 
     return(
         <Box sx={{ overflow: 'hidden' }}>
-            <input onChange={buscadorDescription}/>
+            <Input onChange={buscadorDescription} placeholder='Buscador de favoritas' 
+            sx={{marginLeft: 3.5}}/>
 
-            <Grid container wrap="nowrap">    
+            <Grid container wrap="nowrap" sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            alignContent: "center",
+            bgcolor: "background.paper",
+            marginBottom: 5,
+            }}>    
+
                 {listaFotos.map((foto,i) =>                       
-                    <Box key={i} sx={{ width: 210, marginRight: 0.5, my: 5 }}>          
+                    <Box key={i} sx={{ width: 390, marginRight: 0.5, marginTop: 4 }}>                             
                         <img
-                            style={{ width: 210, height: 180 }}
+                            style={{ width: 350, height: 280 }}
                             alt={foto.description}
                             src={foto.urls.full}
                         /> 
             
                         <Box sx={{ pr: 2 }}>
                             <Typography gutterBottom variant="body2">
-                                {foto.description ? foto.description : 'Descripcion en proceso'}
-                               {/*  {defaultDecription(foto.description)} */}
-                                
+                                {foto.description ? foto.description : 'Añadir descripción'}                               
+                                {foto.date}
 
                             </Typography>                         
 
-                            <Typography variant="caption" color="text.secondary">
+                            {/* <Typography variant="caption" color="text.secondary">
                                 {` links ${foto.likes} • ${foto.updated_at} `}
-                            </Typography>
+                            </Typography> */}
                             
                         </Box>
                      
-                        <Button onClick={() => dispatch(deleteFoto(foto))}>Delete</Button>
-                        <Button onClick={() => descargarImg(foto)}>descar</Button>
-                        <Button onClick={() => handleOpen(foto.id)}>Edit</Button> 
+                        <Button onClick={() => handleOpen(foto.id)}><EditIcon/></Button>                         
+                        <Button onClick={() => descargarImg(foto)}><ArrowCircleDownIcon/></Button>
+                        <Button onClick={() => dispatch(deleteFoto(foto))}><DeleteIcon/></Button>
 
                         <React.Fragment>                            
                             <Modal
@@ -112,15 +122,25 @@ export const FotosFavo = () => {
                                 aria-describedby="modal-modal-description"
                             >
                                 <Box sx={style}>
-                                <Typography id="modal-modal-title" variant="h6" component="h2">
-                                    Insertar nueva descripción
-                                </Typography>
+                                    <Typography id="modal-modal-title" variant="h6" component="h2"
+                                        
+                                    >
+                                        Insertar nueva descripción
+                                    </Typography>
                                 
-                                <textarea onChange={handleOnChange}> </textarea>
-                                {/* <textarea onChange={change}></textarea> */}
+                                    <TextField
+                                    id="standard-helperText"
+                                    label="Nueva Descriptición"                                    
+                                    variant="standard"
+                                    onChange={handleOnChange}
+                                    multiline
+                                    fullWidth 
+                                    sx={{marginTop:2, }}/>
                                 
-                                <Button onClick={() => cambiarDescripcion()}>Aceptar</Button>
-                                <Button onClick={handleClose}>Cancelar</Button>
+                                    <Box sx={{marginTop: 1.5, float: 'right'}}>
+                                        <Button onClick={() => cambiarDescripcion()}><CheckIcon/></Button>
+                                        <Button color="error"onClick={handleClose}><CancelIcon/></Button>
+                                    </Box>
                                 </Box>
                             </Modal>
                         </React.Fragment>

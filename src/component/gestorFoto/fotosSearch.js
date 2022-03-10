@@ -2,44 +2,59 @@ import { useDispatch } from 'react-redux';
 import {addFoto} from '../../fotosSlice/fotoSlice';
 import React from 'react';
 
-import PropTypes from 'prop-types';
-import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Skeleton from '@mui/material/Skeleton';
 import Button from '@mui/material/Button';
+import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 
 export const FotosSearch = (props) => {
 
     const dispatch = useDispatch();
 
+    // Esta funcion me hace un bucle infinito muy grande, la idea era añadirle la fecha de agregado a favorito a la img en favoritos
+    const addFavoritos = (foto) => {
+        const fecha = {date: new Date(Date.now())}
+        const newFoto = Object.assign(foto, fecha);
+        console.log(newFoto)
+        //dispatch(addFavoritos(foto)) hacen lo mismo. Creo que el problema esta aqui
+        dispatch(() =>addFavoritos(foto))
+    }
+
     return(
-        <Grid container wrap="nowrap">
+        <Box container wrap="nowrap"  sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            alignContent: "center",
+            marginTop: -3,
+            marginLeft: 5,
+            marginBottom: 5,
+            bgcolor: "background.paper",
+            
+            }}>
+
             {props.fotos.map((foto,i) =>                       
-                <Box key={i} sx={{ width: 210, marginRight: 0.5, my: 5 }}>          
+                <Box key={i} sx={{ width: 390, marginRight: 0.5, marginTop: 5 }}>          
                     <img
-                        style={{ width: 210, height: 180 }}
+                        style={{ width: 350, height: 280 }}
                         alt={foto.description}
                         src={foto.urls.full}
-                    /> 
-         
-                    <Box sx={{ pr: 2 }}>
-                        <Typography gutterBottom variant="body2">
-                            {foto.description ? foto.description : 'Descripcion en proceso'}
-                        </Typography>                         
-    
-                        <Typography variant="caption" color="text.secondary">
-                            {` links ${foto.likes} • ${foto.updated_at} `}
-                        </Typography>
                         
-                    </Box>
+                    /> 
+                                
 
                     <Button onClick={() => dispatch(addFoto(foto))}>
-                        Add to my photos
+                    {/* <Button onClick={() => addFavoritos(foto)}> */}
+                        {/* agregar fotos */}
+                        <AddPhotoAlternateIcon/>
+                        <Typography variant="caption" color="text.secondary">
+                            {`  ${foto.description ? foto.description : 'añadir descripción en favoritas'}  `}
+                        </Typography>
                     </Button>
+                    
+                    
                 </Box> 
             )}
 
-        </Grid>
+        </Box>
     )
 }
