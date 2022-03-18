@@ -3,7 +3,7 @@ Te invito a ver el proyecto desplegado
 
 https://gestor-fotos-oxygen-8s8tpdb9o-carlo-terrero.vercel.app/
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
 
 ## Available Scripts
 
