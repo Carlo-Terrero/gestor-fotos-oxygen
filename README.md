@@ -1,5 +1,5 @@
-# Si quieres ver como ha quedado, te fa
-### Te invito a ver como el proyecto desplegado
+### ¿Quieres ver como ha quedado?
+Te invito a ver el proyecto desplegado
 
 https://gestor-fotos-oxygen-8s8tpdb9o-carlo-terrero.vercel.app/
 
