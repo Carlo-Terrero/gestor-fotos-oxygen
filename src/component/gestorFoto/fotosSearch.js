@@ -11,11 +11,10 @@ export const FotosSearch = (props) => {
 
     const dispatch = useDispatch();
 
-    // Esta funcion me hace un bucle infinito muy grande, la idea era añadirle la fecha de agregado a favorito a la img en favoritos
     const handleaddFavoritos = (foto) => {
         //const  = {date: new Date(Date.now())}
         const newFoto = {...foto, fecha: new Date().toISOString()}
-        console.log(newFoto)
+        //console.log(newFoto)
         //dispatch(addFavoritos(foto)) hacen lo mismo. Creo que el problema esta aqui
         dispatch(addFoto(newFoto))
     }
@@ -29,7 +28,6 @@ export const FotosSearch = (props) => {
             marginLeft: 5,
             marginBottom: 5,
             bgcolor: "background.paper",
-            
             }}>
 
             {props.fotos.map((foto,i) =>                       
@@ -37,8 +35,7 @@ export const FotosSearch = (props) => {
                     <img
                         style={{ width: 350, height: 280 }}
                         alt={foto.description}
-                        src={foto.urls.full}
-                        
+                        src={foto.urls.full}                        
                     /> 
                                 
 
