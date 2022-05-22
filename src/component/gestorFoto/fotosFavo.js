@@ -147,8 +147,6 @@ export const FotosFavo = () => {
                         <Box sx={{marginTop: 1.5, float: 'right'}}>
                             <Button onClick={() => cambiarDescripcion()}><CheckIcon/></Button>
                             <Button color="error"onClick={handleClose}><CancelIcon/></Button>
-                            <CancelIcon/>
-                            <CancelIcon/>
                         </Box>
                     </Box>
                 </Modal>
