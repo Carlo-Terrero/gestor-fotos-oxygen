@@ -13,20 +13,24 @@ function saveToStorage(photos) {
 
 export const fotoSlice = createSlice({
   name: 'fotosFavoritas',
+  
   initialState: {
     listFoto: getFromStorage(),
   },
+
   reducers: {    
     addFoto: (state, action) => {
       state.listFoto.push(action.payload)
       saveToStorage(state.listFoto)
     },
+
     deleteFoto: (state, action) => {
       state.listFoto = state.listFoto.filter(foto => foto.id !== action.payload.id ) 
       saveToStorage(state.listFoto)
       //console.log(action.payload)
 
     },
+
     editDescription: (state, action) => {
       /* state.value += action.payload */
       //console.log(action)
@@ -36,8 +40,8 @@ export const fotoSlice = createSlice({
       fotoToEdit.description = action.payload.description;
       state.listFoto = newListFoto;
       saveToStorage(state.listFoto)
-
     },
+
   },
 })
 

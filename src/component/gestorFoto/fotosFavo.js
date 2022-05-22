@@ -71,7 +71,7 @@ export const FotosFavo = () => {
 
     const handleOnChange = (e) => {
         setNewDescription( e.target.value);
-        console.log(newDescription)
+        //console.log(newDescription)
     }
 
     //Aqui el buscador
@@ -113,9 +113,7 @@ export const FotosFavo = () => {
                      
                         <Button onClick={() => handleOpen(foto)}><EditIcon/></Button>                         
                         <Button onClick={() => descargarImg(foto)}><ArrowCircleDownIcon/></Button>
-                        <Button onClick={() => dispatch(deleteFoto(foto))}><DeleteIcon/></Button>
-
-                        
+                        <Button onClick={() => dispatch(deleteFoto(foto))}><DeleteIcon/></Button>                        
                    
                     </Box> 
                      
@@ -149,6 +147,8 @@ export const FotosFavo = () => {
                         <Box sx={{marginTop: 1.5, float: 'right'}}>
                             <Button onClick={() => cambiarDescripcion()}><CheckIcon/></Button>
                             <Button color="error"onClick={handleClose}><CancelIcon/></Button>
+                            <CancelIcon/>
+                            <CancelIcon/>
                         </Box>
                     </Box>
                 </Modal>
