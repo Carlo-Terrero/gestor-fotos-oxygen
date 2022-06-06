@@ -12,10 +12,8 @@ export const FotosSearch = (props) => {
     const dispatch = useDispatch();
 
     const handleaddFavoritos = (foto) => {
-        //const  = {date: new Date(Date.now())}
-        const newFoto = {...foto, fecha: new Date().toISOString()}
-        //console.log(newFoto)
-        //dispatch(addFavoritos(foto)) hacen lo mismo. Creo que el problema esta aqui
+        const newDescription = foto.description ? foto.description : 'añadir nueva description';
+        const newFoto = {...foto, fecha: new Date().toISOString(), newDescription: newDescription}        
         dispatch(addFoto(newFoto))
     }
 
@@ -30,8 +28,9 @@ export const FotosSearch = (props) => {
             bgcolor: "background.paper",
             }}>
 
-            {props.fotos.map((foto,i) =>                       
-                <Box key={i} sx={{ width: 390, marginRight: 0.5, marginTop: 5 }}>          
+            {props.fotos.map((foto,i) =>    
+                <Box key={i} sx={{ width: 390, marginRight: 0.5, marginTop: 5 }}>                   
+
                     <img
                         style={{ width: 350, height: 280 }}
                         alt={foto.description}
@@ -44,7 +43,8 @@ export const FotosSearch = (props) => {
                         {/* agregar fotos */}
                         <AddPhotoAlternateIcon/>
                         <Typography variant="caption" color="text.secondary">
-                            {`  ${foto.description ? foto.description : 'añadir descripción en favoritas'}  `}
+                            {`  ${foto.description ? foto.description : 'añadir description en favoritos' }  `}
+                            {/* {foto.alt_description} */}
                         </Typography>
                     </Button>
                     

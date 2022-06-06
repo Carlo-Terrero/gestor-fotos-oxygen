@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selecFoto, deleteFoto, editDescription } from '../../fotosSlice/fotoSlice';
 import { saveAs } from 'file-saver';
-//import Popup from 'reactjs-popup';
 
 // Styles
 import Grid from '@mui/material/Grid';
@@ -18,8 +17,6 @@ import TextField from '@mui/material/TextField';
 import CheckIcon from '@mui/icons-material/Check';
 import CancelIcon from '@mui/icons-material/Cancel';
 
-
-//import Modal from '../utilidades/modal';
 const style = {
     position: 'absolute',
     top: '50%',
@@ -45,15 +42,15 @@ export const FotosFavo = () => {
     const [open, setOpen] = useState(false);
 
     const handleOpen = (foto) => {
-        setNewDescription(foto.description)
+        setNewDescription(foto.description);
         setEditFoto(foto.id);
-        setOpen(true)
+        setOpen(true);
     };
     
     const handleClose = () => {
-        setNewDescription('')
-        setEditFoto('')
-        setOpen(false)
+        setNewDescription('');
+        setEditFoto('');
+        setOpen(false);
     };
 
     const descargarImg = (foto) => {
@@ -71,11 +68,10 @@ export const FotosFavo = () => {
 
     const handleOnChange = (e) => {
         setNewDescription( e.target.value);
-        //console.log(newDescription)
     }
 
     //Aqui el buscador
-    const filteredPhotos = busqueda.length ? listaFotos.filter(f => f.description.toLowerCase().includes(busqueda.toLowerCase())) : listaFotos;
+    const filteredPhotos = busqueda.length ? listaFotos.filter(f => f.newDescription.toLowerCase().includes(busqueda.toLowerCase())) : listaFotos;
 
     return(
         <Box sx={{ overflow: 'hidden' }}>
@@ -89,7 +85,7 @@ export const FotosFavo = () => {
             bgcolor: "background.paper",
             marginBottom: 5,
             }}>    
-
+                
                 {filteredPhotos.map((foto,i) =>                       
                     <Box key={i} sx={{ width: 390, marginRight: 0.5, marginTop: 4 }}>                             
                         <img
@@ -99,15 +95,11 @@ export const FotosFavo = () => {
                         /> 
             
                         <Box sx={{ pr: 2 }}>
-                            <Typography gutterBottom variant="body2">
-                                {foto.description ? foto.description : 'Añadir descripción'}                               
-                                {foto.date}
+                            <Typography gutterBottom variant="body2">                                
+                                {foto.newDescription}                          
+                                {/* {foto.fecha} */}
 
                             </Typography>                         
-
-                            {/* <Typography variant="caption" color="text.secondary">
-                                {` links ${foto.likes} • ${foto.updated_at} `}
-                            </Typography> */}
                             
                         </Box>
                      
