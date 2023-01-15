@@ -18,8 +18,6 @@ export const FotosSearch = (props) => {
         dispatch(addFoto(newFoto))
     }
 
-    console.log(props.fotos)
-
     return(
         <Box container wrap="nowrap"  sx={{
             display: "flex",
@@ -50,7 +48,7 @@ export const FotosSearch = (props) => {
                         </Typography>
                     </Button>
 
-                    <Button onClick={navigator.clipboard.writeText(foto.urls.small)}>
+                    <Button onClick={() => navigator.clipboard.writeText(foto.urls.small)}>
                         <ContentCopyIcon/>
                     </Button>
                     

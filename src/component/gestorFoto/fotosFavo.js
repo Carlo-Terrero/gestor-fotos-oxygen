@@ -16,6 +16,7 @@ import Input from '@mui/material/Input';
 import TextField from '@mui/material/TextField';
 import CheckIcon from '@mui/icons-material/Check';
 import CancelIcon from '@mui/icons-material/Cancel';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
 const style = {
     position: 'absolute',
@@ -90,7 +91,7 @@ export const FotosFavo = () => {
                         <img
                             style={{ width: 350, height: 280 }}
                             alt={foto.description}
-                            src={foto.urls.full}
+                            src={foto.urls.small}
                         /> 
             
                         <Box sx={{ pr: 2 }}>
@@ -104,7 +105,10 @@ export const FotosFavo = () => {
                      
                         <Button onClick={() => handleOpen(foto)}><EditIcon/></Button>                         
                         <Button onClick={() => descargarImg(foto)}><ArrowCircleDownIcon/></Button>
-                        <Button onClick={() => dispatch(deleteFoto(foto))}><DeleteIcon/></Button>                        
+                        <Button onClick={() => dispatch(deleteFoto(foto))}><DeleteIcon/></Button>
+                        <Button onClick={() => navigator.clipboard.writeText(foto.urls.small)}>
+                            <ContentCopyIcon/>
+                        </Button>                   
                    
                     </Box> 
                      
