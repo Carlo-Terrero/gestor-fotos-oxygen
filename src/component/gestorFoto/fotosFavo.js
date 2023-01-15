@@ -75,15 +75,14 @@ export const FotosFavo = () => {
 
     return(
         <Box sx={{ overflow: 'hidden' }}>
-            <Input onChange={buscadorDescription} placeholder='Buscador de favoritas' 
-            sx={{marginLeft: 3.5}}/>
+            <Input onChange={buscadorDescription} placeholder='Buscador de favoritas' sx={{marginLeft: 3.5}}/>
 
             <Grid container wrap="nowrap" sx={{
-            display: "flex",
-            flexWrap: "wrap",
-            alignContent: "center",
-            bgcolor: "background.paper",
-            marginBottom: 5,
+                display: "flex",
+                flexWrap: "wrap",
+                alignContent: "center",
+                bgcolor: "background.paper",
+                marginBottom: 5,
             }}>    
                 
                 {filteredPhotos.map((foto,i) =>                       
@@ -120,9 +119,7 @@ export const FotosFavo = () => {
                     aria-describedby="modal-modal-description"
                 >
                     <Box sx={style}>
-                        <Typography id="modal-modal-title" variant="h6" component="h2"
-                            
-                        >
+                        <Typography id="modal-modal-title" variant="h6" component="h2">
                             Insertar nueva descripción
                         </Typography>
                     
@@ -138,7 +135,7 @@ export const FotosFavo = () => {
                     
                         <Box sx={{marginTop: 1.5, float: 'right'}}>
                             <Button onClick={() => cambiarDescripcion()}><CheckIcon/></Button>
-                            <Button color="error"onClick={handleClose}><CancelIcon/></Button>
+                            <Button color="error"onClick={() => handleClose()}><CancelIcon/></Button>
                         </Box>
                     </Box>
                 </Modal>

@@ -6,6 +6,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
 export const FotosSearch = (props) => {
 
@@ -16,6 +17,8 @@ export const FotosSearch = (props) => {
         const newFoto = {...foto, fecha: new Date().toISOString(), newDescription: newDescription}        
         dispatch(addFoto(newFoto))
     }
+
+    console.log(props.fotos)
 
     return(
         <Box container wrap="nowrap"  sx={{
@@ -34,20 +37,22 @@ export const FotosSearch = (props) => {
                     <img
                         style={{ width: 350, height: 280 }}
                         alt={foto.description}
-                        src={foto.urls.full}                        
+                        src={foto.urls.small}                        
                     /> 
                                 
 
                     {/* <Button onClick={() => dispatch(addFoto(foto))}> */}
                     <Button onClick={() => handleaddFavoritos(foto)}>
-                        {/* agregar fotos */}
                         <AddPhotoAlternateIcon/>
+
                         <Typography variant="caption" color="text.secondary">
                             {`  ${foto.description ? foto.description : 'añadir description en favoritos' }  `}
-                            {/* {foto.alt_description} */}
                         </Typography>
                     </Button>
-                    
+
+                    <Button onClick={navigator.clipboard.writeText(foto.urls.small)}>
+                        <ContentCopyIcon/>
+                    </Button>
                     
                 </Box> 
             )}

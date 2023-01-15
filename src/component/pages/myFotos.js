@@ -7,12 +7,11 @@ export const MyFotos = () => {
     
     return(
         <Box sx={{marginTop:12,marginLeft: 5}}>
-            <Typography 
-                sx={{
+            <Typography sx={{
                     my: 3,
                     marginLeft:3                
-            }}
-            >Coleccion de fotos personal 
+            }}>
+                Coleccion de fotos personal 
             </Typography>            
             
             <FotosFavo/>
