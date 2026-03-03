@@ -6,24 +6,18 @@ import { MyFotos } from './pages/myFotos';
 
 
 function App() {
-  return (
-    <div className="App">
-      <Router>
-         <div>
-          
-          <Navegador />
+    return (
+        <div className="App">
+            <Router>
+                <Navegador />
 
-          <Routes>
-            <Route exact path="/" element={<Search/>} />
-            <Route path="/myFoto" element={<MyFotos/>} />
-
-          </Routes>
-          
-         </div>        
-
-      </Router>
-    </div>
-  );
+                <Routes>
+                    <Route exact path="/" element={<Search/>} />
+                    <Route path="/myFoto" element={<MyFotos/>} />
+                </Routes>
+            </Router>
+        </div>
+    );
 }
 
 export default App;

@@ -1,5 +1,5 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, {useState} from "react";
+import { useNavigate } from "react-router-dom";
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -9,34 +9,37 @@ import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import { createTheme } from '@mui/material/styles';
 import {ThemeProvider } from '@mui/material/styles';
-import { purple } from '@mui/material/colors';
 
 const theme = createTheme({
-  status: {
-    danger: '#e53e3e',
-  },
-  palette: {
-    primary: {
-      main: '#0971f1',
-      darker: '#053e85',
+    status: {
+        danger: '#e53e3e',
     },
-    neutral: {
-      main: '#64748B',
-      contrastText: '#fff',
+    palette: {
+        primary: {
+            main: '#0971f1',
+            darker: '#053e85',
+        },
+        oscuro: {
+            main: '#053e85',
+        },
+        blanco: {
+            main: `#ffffff`,
+            contrastText: '#fff', 
+        },
     },
-    blanco: {
-        main: purple[500]
-    },
-    limon: {
-        main: '#5EBC04',
-        contrastText: '#fff',
-        
-    },
-  },
 });
 
 export const Navegador = () => {
     
+    const [botonSelect, setBotonSetselect] = useState(0);
+    const navigation = useNavigate();
+
+    const handleNavegation = (btnSelect, linkNavegation) => {
+
+        setBotonSetselect(btnSelect);
+        navigation(linkNavegation);
+    }
+
     return(
         <Box sx={{ flexGrow: 1 }}>     
             <AppBar >
@@ -48,16 +51,28 @@ export const Navegador = () => {
                         
                     <ThemeProvider theme={theme}>
                         <Stack spacing={1} direction="row">
-                            <Button  to="/" variant="contained" color="limon">
-                                <NavLink to="/">
-                                    Search
-                                </NavLink>
+                            <Button  to="/" variant="contained" sx={{
+                                backgroundColor: botonSelect === 0 ? "blanco.main" : "oscuro.main",
+                                color: botonSelect === 0 ? "oscuro.main" : "blanco.main",
+                                '&:hover': {
+                                    color: botonSelect === 0 ? "blanco.main" : "oscuro.main",
+                                }
+                            }}
+                                onClick={() => handleNavegation(0, "/")}
+                            >
+                                Search 
                             </Button>
 
-                            <Button to="/myFoto" variant="contained" color="limon">
-                                <NavLink to="/myFoto">
-                                    myFoto
-                                </NavLink>
+                            <Button to="/myFoto" variant="contained" sx={{
+                                backgroundColor: botonSelect === 1 ? "blanco.main" : "oscuro.main",
+                                color: botonSelect === 1 ? "oscuro.main" : "blanco.main",
+                                '&:hover': {
+                                    color: botonSelect === 0 ? "blanco.main" : "oscuro.main",
+                                }
+                            }}
+                                onClick={() => handleNavegation(1, "/myFoto")}
+                            >
+                                myFoto
                             </Button>
                         </Stack>
                     </ThemeProvider>

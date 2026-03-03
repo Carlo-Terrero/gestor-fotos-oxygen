@@ -11,7 +11,7 @@ export const MyFotos = () => {
                     my: 3,
                     marginLeft:3                
             }}>
-                Coleccion de fotos personal 
+                Colección de fotos personal 
             </Typography>            
             
             <FotosFavo/>
