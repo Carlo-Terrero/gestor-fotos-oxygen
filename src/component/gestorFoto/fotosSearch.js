@@ -20,13 +20,13 @@ export const FotosSearch = (props) => {
 
     return(
         <Box container wrap="nowrap"  sx={{
-            display: "flex",
-            flexWrap: "wrap",
-            alignContent: "center",
-            marginTop: -3,
-            marginLeft: 5,
-            marginBottom: 5,
-            bgcolor: "background.paper",
+                display: "flex",
+                flexWrap: "wrap",
+                alignContent: "center",
+                marginTop: -3,
+                marginLeft: 5,
+                marginBottom: 5,
+                bgcolor: "background.paper",
             }}>
 
             {props.fotos.map((foto,i) =>    

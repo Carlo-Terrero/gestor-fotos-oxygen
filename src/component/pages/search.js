@@ -9,6 +9,7 @@ import Box from '@mui/material/Box';
 import Input from '@mui/material/Input';
 import Pagination from '@mui/material/Pagination';
 
+
 export const Search = () =>{
 
     const [fotos,setFotos] = useState([]);
@@ -62,7 +63,7 @@ export const Search = () =>{
             <Box sx={{marginLeft: 5,}}>
 
                 <Input onChange={buscador} placeholder='Buscador' 
-                    sx={{marginTop:12,  }}
+                    sx={{marginTop:12  }}
                 
                 />
                 
