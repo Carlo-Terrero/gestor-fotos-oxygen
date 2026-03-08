@@ -1,12 +1,31 @@
 import { useDispatch } from 'react-redux';
 import {addFoto} from '../../fotosSlice/fotoSlice';
-import React from 'react';
 
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import Toolbar from '@mui/material/Toolbar';
+
+const containerStyle= {
+    display: "flex",
+    flexWrap: "wrap",
+    alignContent: "center",
+    marginTop: -3,
+    marginBottom: 5,
+    bgcolor: "background.paper",
+    justifyContent: "center"
+}
+
+const photoStyles = { 
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    width: 390,
+    marginRight: 0.5,
+    marginTop: 5 
+};
 
 export const FotosSearch = (props) => {
 
@@ -19,18 +38,10 @@ export const FotosSearch = (props) => {
     }
 
     return(
-        <Box container wrap="nowrap"  sx={{
-                display: "flex",
-                flexWrap: "wrap",
-                alignContent: "center",
-                marginTop: -3,
-                marginLeft: 5,
-                marginBottom: 5,
-                bgcolor: "background.paper",
-            }}>
+        <Box container wrap="nowrap"  sx={containerStyle}>
 
             {props.fotos.map((foto,i) =>    
-                <Box key={i} sx={{ width: 390, marginRight: 0.5, marginTop: 5 }}>                   
+                <Box key={i} sx={photoStyles}>                   
 
                     <img
                         style={{ width: 350, height: 280 }}
@@ -38,20 +49,19 @@ export const FotosSearch = (props) => {
                         src={foto.urls.small}                        
                     /> 
                                 
+                    <Toolbar>
+                        <Button onClick={() => handleaddFavoritos(foto)}>
+                            <AddPhotoAlternateIcon/>
 
-                    {/* <Button onClick={() => dispatch(addFoto(foto))}> */}
-                    <Button onClick={() => handleaddFavoritos(foto)}>
-                        <AddPhotoAlternateIcon/>
+                            <Typography variant="caption" color="text.secondary">
+                                {`  ${foto.description ? foto.description : 'añadir description en favoritos' }  `}
+                            </Typography>
+                        </Button>
 
-                        <Typography variant="caption" color="text.secondary">
-                            {`  ${foto.description ? foto.description : 'añadir description en favoritos' }  `}
-                        </Typography>
-                    </Button>
-
-                    <Button onClick={() => navigator.clipboard.writeText(foto.urls.small)}>
-                        <ContentCopyIcon/>
-                    </Button>
-                    
+                        <Button onClick={() => navigator.clipboard.writeText(foto.urls.small)}>
+                            <ContentCopyIcon/>
+                        </Button>
+                    </Toolbar>
                 </Box> 
             )}
 
