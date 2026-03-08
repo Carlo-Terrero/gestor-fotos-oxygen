@@ -9,6 +9,32 @@ import Box from '@mui/material/Box';
 import Input from '@mui/material/Input';
 import Pagination from '@mui/material/Pagination';
 
+const searchStyle = {
+    display: "flex",
+    justifyContent: "space-around",
+    marginLeft: 2,
+    marginTop: 12,
+    '@media (max-width: 600px)': {
+        flexDirection: "column",
+        gap: "20px",
+        marginLeft: 0,
+        maxWidth: "350px",
+        justifySelf: "center",
+        marginTop: 10,
+    }
+}
+
+const styleNavBottom = {
+    marginLeft: 4,
+    marginBottom: 3,
+    marginTop: -4,
+    '@media (max-width: 600px)': {
+        display: "flex",
+        justifyContent: "center",
+        marginLeft: 0
+    }
+}
+
 
 export const Search = () =>{
 
@@ -60,20 +86,19 @@ export const Search = () =>{
     return(
         <Box sx={{ overflow: 'hidden' }}>
 
-            <Box sx={{marginLeft: 5,}}>
+            <Box container sx={searchStyle}>
 
                 <Input onChange={buscador} placeholder='Buscador' 
-                    sx={{marginTop:12  }}
-                
+                    sx={{}}
                 />
                 
-                <Pagination count={totalPages} page={page} onChange={handleChangePage} sx={{marginTop: 4}}/>
+                <Pagination count={totalPages} page={page} onChange={handleChangePage} sx={{}}/>
             </Box>
 
             {isSearching && <div>Searching ...</div>}
             <FotosSearch fotos={fotos}/>
 
-            <Pagination count={totalPages} page={page} onChange={handleChangePage} sx={{marginLeft: 4, marginBottom: 3, marginTop: -4}}/>
+            <Pagination count={totalPages} page={page} onChange={handleChangePage} sx={styleNavBottom}/>
         </Box>
     )
 }
