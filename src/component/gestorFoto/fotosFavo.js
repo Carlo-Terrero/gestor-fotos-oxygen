@@ -35,6 +35,7 @@ const style = {
 const containerASinglePhoto = { 
     display: 'flex',
     flexDirection: 'column',
+    alignItems: 'center',
     width: 390, 
     marginTop: 4 
 };
