@@ -17,6 +17,8 @@ import TextField from '@mui/material/TextField';
 import CheckIcon from '@mui/icons-material/Check';
 import CancelIcon from '@mui/icons-material/Cancel';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import Toolbar  from '@mui/material/Toolbar';
+
 
 const style = {
     position: 'absolute',
@@ -28,6 +30,13 @@ const style = {
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
+};
+
+const containerASinglePhoto = { 
+    display: 'flex',
+    flexDirection: 'column',
+    width: 390, 
+    marginTop: 4 
 };
 
 export const FotosFavo = () => {
@@ -87,7 +96,7 @@ export const FotosFavo = () => {
             }}>    
                 
                 {filteredPhotos.map((foto,i) =>                       
-                    <Box key={i} sx={{ width: 390, marginRight: 0.5, marginTop: 4 }}>                             
+                    <Box key={i} sx={containerASinglePhoto}>                             
                         <img
                             style={{ width: 350, height: 280 }}
                             alt={foto.description}
@@ -103,13 +112,14 @@ export const FotosFavo = () => {
                             
                         </Box>
                      
-                        <Button onClick={() => handleOpen(foto)}><EditIcon/></Button>                         
-                        <Button onClick={() => descargarImg(foto)}><ArrowCircleDownIcon/></Button>
-                        <Button onClick={() => dispatch(deleteFoto(foto))}><DeleteIcon/></Button>
-                        <Button onClick={() => navigator.clipboard.writeText(foto.urls.small)}>
-                            <ContentCopyIcon/>
-                        </Button>                   
-                   
+                        <Toolbar>
+                            <Button onClick={() => handleOpen(foto)}><EditIcon/></Button>                         
+                            <Button onClick={() => descargarImg(foto)}><ArrowCircleDownIcon/></Button>
+                            <Button onClick={() => dispatch(deleteFoto(foto))}><DeleteIcon/></Button>
+                            <Button onClick={() => navigator.clipboard.writeText(foto.urls.small)}>
+                                <ContentCopyIcon/>
+                            </Button>                   
+                        </Toolbar>
                     </Box> 
                      
                 )}
@@ -128,14 +138,15 @@ export const FotosFavo = () => {
                         </Typography>
                     
                         <TextField
-                        id="standard-helperText"
-                        label="Nueva Descriptición"                                    
-                        variant="standard"
-                        onChange={handleOnChange}
-                        multiline
-                        value={newDescription}
-                        fullWidth 
-                        sx={{marginTop:2, }}/>
+                            id="standard-helperText"
+                            label="Nueva Descriptición"                                    
+                            variant="standard"
+                            onChange={handleOnChange}
+                            multiline
+                            value={newDescription}
+                            fullWidth 
+                            sx={{marginTop:2, }}
+                        />
                     
                         <Box sx={{marginTop: 1.5, float: 'right'}}>
                             <Button onClick={() => cambiarDescripcion()}><CheckIcon/></Button>

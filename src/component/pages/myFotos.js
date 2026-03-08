@@ -1,12 +1,15 @@
-import React from 'react';
 import { FotosFavo } from '../gestorFoto/fotosFavo';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
+const styleConiner = {
+    marginTop: 12,
+}
+
 export const MyFotos = () => {
     
     return(
-        <Box sx={{marginTop:12,marginLeft: 5}}>
+        <Box sx={styleConiner}>
             <Typography sx={{
                     my: 3,
                     marginLeft:3                
